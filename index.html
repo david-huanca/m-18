@@ -179,6 +179,38 @@
     .btn-arrow { transition: transform .2s; }
     .btn:hover .btn-arrow { transform: translateX(3px); }
 
+    /* ── Encabezado cursos ── */
+    .courses-header {
+      width: 100%;
+      max-width: 780px;
+      margin-bottom: 28px;
+    }
+
+    .courses-eyebrow {
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: var(--gold);
+      opacity: .6;
+      margin-bottom: 8px;
+    }
+
+    .courses-title {
+      font-size: clamp(1.2rem, 3vw, 1.5rem);
+      font-weight: 800;
+      letter-spacing: -.4px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .courses-desc {
+      font-size: .8rem;
+      font-weight: 300;
+      color: rgba(255,255,255,.35);
+      letter-spacing: .3px;
+    }
+
     /* ── Footer ── */
     footer {
       text-align: center;
@@ -288,6 +320,67 @@
       border: 1px solid rgba(255,255,255,.08);
     }
     .btn-zoom--disabled:hover { opacity: 1; transform: none; }
+
+    /* ── Countdown ── */
+    .zoom-countdown {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .cd-unit {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 3px;
+    }
+
+    .cd-num {
+      font-size: 1.7rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--white);
+      line-height: 1;
+      min-width: 2ch;
+      text-align: center;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .cd-label {
+      font-size: .55rem;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.25);
+    }
+
+    .cd-sep {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: rgba(255,255,255,.15);
+      padding-bottom: 6px;
+      line-height: 1;
+    }
+
+    .zoom-countdown--done { display: none; }
+
+    /* ── Fila inferior: toggle + WhatsApp ── */
+    .zoom-bottom-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    /* Botón WhatsApp */
+    .btn-wa {
+      background: #25D366;
+      color: #fff;
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+    .btn-wa:hover { opacity: .85; }
 
     /* ── Toggle "Ver horarios" ── */
     .zoom-times-toggle {
@@ -430,24 +523,64 @@
           Unirse por Zoom
         </a>
       </div>
+      <!-- Countdown -->
+      <div class="zoom-countdown" id="zoomCountdown" aria-live="polite">
+        <div class="cd-unit">
+          <span class="cd-num" id="cdDays">--</span>
+          <span class="cd-label">días</span>
+        </div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit">
+          <span class="cd-num" id="cdHours">--</span>
+          <span class="cd-label">horas</span>
+        </div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit">
+          <span class="cd-num" id="cdMins">--</span>
+          <span class="cd-label">min</span>
+        </div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit">
+          <span class="cd-num" id="cdSecs">--</span>
+          <span class="cd-label">seg</span>
+        </div>
+      </div>
       <!-- Mensaje de estado -->
       <p class="zoom-card-msg" id="zoomMsg">El enlace se activará minutos antes de comenzar la sesión.</p>
-      <!-- Toggle horarios -->
-      <button class="zoom-times-toggle" id="zoomTimesToggle"
-              aria-expanded="false" aria-controls="zoomTimesPanel">
-        <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none"
-             stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-             stroke-linejoin="round" aria-hidden="true">
-          <path d="M6 9l6 6 6-6"/>
-        </svg>
-        Ver horarios por país
-      </button>
+      <!-- Fila inferior: toggle + botón WhatsApp -->
+      <div class="zoom-bottom-row">
+        <button class="zoom-times-toggle" id="zoomTimesToggle"
+                aria-expanded="false" aria-controls="zoomTimesPanel">
+          <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+          Ver horarios por país
+        </button>
+        <a class="btn btn-wa"
+           href="https://chat.whatsapp.com/E8AiWtcX1HWDq4nkdP83Nc?mode=gi_t"
+           target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"
+               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 2C8.268 2 2 8.268 2 16c0 2.484.668 4.81 1.832 6.808L2 30l7.392-1.808A13.913 13.913 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.545 11.545 0 0 1-5.888-1.608l-.424-.252-4.388 1.072 1.104-4.264-.276-.44A11.557 11.557 0 0 1 4.4 16C4.4 9.59 9.59 4.4 16 4.4S27.6 9.59 27.6 16 22.41 27.6 16 27.6zm6.34-8.672c-.348-.176-2.06-1.016-2.38-1.132-.32-.116-.552-.176-.784.176-.232.348-.9 1.132-1.1 1.364-.204.232-.404.26-.752.084-.348-.176-1.468-.54-2.796-1.724-1.032-.92-1.728-2.056-1.932-2.404-.204-.348-.02-.536.152-.708.156-.156.348-.408.524-.612.172-.204.228-.348.344-.58.116-.232.056-.436-.028-.612-.084-.176-.784-1.888-1.072-2.584-.284-.676-.572-.584-.784-.596l-.668-.012c-.232 0-.608.088-.928.436s-1.22 1.192-1.22 2.908 1.248 3.372 1.42 3.604c.176.232 2.456 3.748 5.952 5.256.832.36 1.48.576 1.988.736.836.264 1.596.228 2.196.14.672-.1 2.06-.84 2.352-1.652.292-.812.292-1.508.204-1.652-.084-.144-.316-.228-.664-.404z"/>
+          </svg>
+         Unirse Grupo WhatsApp
+        </a>
+      </div>
       <!-- Panel de horarios (generado por JS) -->
       <div class="zoom-times-panel" id="zoomTimesPanel" hidden></div>
     </div>
   </div>
 
   <div class="zoom-rule" style="margin-bottom:48px;"></div>
+
+  <!-- Encabezado sección cursos -->
+  <div class="courses-header">
+    <p class="courses-eyebrow">Acceso gratuito en ACADI</p>
+    <h2 class="courses-title">Accedé al curso completo</h2>
+    <p class="courses-desc">9 lecciones on demand · material descargable · recursos complementarios</p>
+  </div>
 
   <div class="cards">
 
@@ -514,7 +647,7 @@
   const ZOOM_URL     = "https://zoom.us/j/XXXXXXXXXX"; // ← reemplazar con link real
   // 20:00 Chile (CLST = UTC-3) → 23:00 UTC
   const TRAINING_UTC = new Date("2026-03-30T23:00:00Z");
-  const OPEN_MIN     = 30;  // minutos antes que se activa el botón
+  const OPEN_MIN     = 10;  // minutos antes que se activa el botón
   const CLOSE_H      = 4;   // horas después que se desactiva
   // ─────────────────────────────────────────────────────────────────────────
 
@@ -525,13 +658,11 @@
     { name: 'Perú',       flag: '🇵🇪', tz: 'America/Lima' },
     { name: 'Bolivia',    flag: '🇧🇴', tz: 'America/La_Paz' },
     { name: 'Venezuela',  flag: '🇻🇪', tz: 'America/Caracas' },
-    { name: 'Guyana',     flag: '🇬🇾', tz: 'America/Guyana' },
     { name: 'Paraguay',   flag: '🇵🇾', tz: 'America/Asuncion' },
     { name: 'Chile',      flag: '🇨🇱', tz: 'America/Santiago' },
     { name: 'Argentina',  flag: '🇦🇷', tz: 'America/Argentina/Buenos_Aires' },
     { name: 'Uruguay',    flag: '🇺🇾', tz: 'America/Montevideo' },
     { name: 'Brasil',     flag: '🇧🇷', tz: 'America/Sao_Paulo' },
-    { name: 'Surinam',    flag: '🇸🇷', tz: 'America/Paramaribo' },
   ];
 
   function fmtTime(tz) {
@@ -632,15 +763,38 @@
     panel.hidden = isOpen;
   });
 
-  // ── Activación automática del botón ──────────────────────────────────────
-  function checkZoomActivation() {
+  // ── Countdown + activación automática ────────────────────────────────────
+  const cdEl = {
+    wrap:  document.getElementById('zoomCountdown'),
+    days:  document.getElementById('cdDays'),
+    hours: document.getElementById('cdHours'),
+    mins:  document.getElementById('cdMins'),
+    secs:  document.getElementById('cdSecs'),
+  };
+
+  function pad(n) { return String(n).padStart(2, '0'); }
+
+  function tick() {
     const now        = new Date();
     const activateAt = new Date(TRAINING_UTC.getTime() - OPEN_MIN * 60 * 1000);
     const endAt      = new Date(TRAINING_UTC.getTime() + CLOSE_H * 3600 * 1000);
+    const btn        = document.getElementById('zoomBtn');
+    const msg        = document.getElementById('zoomMsg');
+    const diff       = TRAINING_UTC - now;
 
-    const btn = document.getElementById('zoomBtn');
-    const msg = document.getElementById('zoomMsg');
+    // ── Countdown activo ──
+    if (diff > 0) {
+      const totalSecs = Math.floor(diff / 1000);
+      cdEl.days.textContent  = pad(Math.floor(totalSecs / 86400));
+      cdEl.hours.textContent = pad(Math.floor((totalSecs % 86400) / 3600));
+      cdEl.mins.textContent  = pad(Math.floor((totalSecs % 3600) / 60));
+      cdEl.secs.textContent  = pad(totalSecs % 60);
+    } else {
+      // Ocultar countdown cuando arranca
+      cdEl.wrap.classList.add('zoom-countdown--done');
+    }
 
+    // ── Activar / desactivar botón ──
     if (now >= activateAt && now <= endAt) {
       btn.href = ZOOM_URL;
       btn.removeAttribute('aria-disabled');
@@ -650,11 +804,12 @@
       msg.style.color = 'rgba(45,140,255,.9)';
     } else if (now > endAt) {
       msg.textContent = 'La sesión ya ha finalizado. ¡Gracias por participar!';
+      msg.style.color = '';
     }
   }
 
-  checkZoomActivation();
-  setInterval(checkZoomActivation, 60 * 1000);
+  tick();
+  setInterval(tick, 1000);
 </script>
 </body>
 </html>
