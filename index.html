@@ -189,12 +189,207 @@
       letter-spacing: .6px;
     }
 
+    /* ── Separador entre Zoom y cursos ── */
+    .zoom-rule {
+      width: 36px;
+      height: 1.5px;
+      background: rgba(255,255,255,.1);
+      margin: 48px auto 0;
+      border-radius: 2px;
+    }
+
+    /* ── Sección Zoom ── */
+    .zoom-section {
+      margin-top: 0;
+      width: 100%;
+      max-width: 780px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .zoom-eyebrow {
+      font-size: .65rem;
+      font-weight: 700;
+      letter-spacing: 3.5px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.3);
+      text-align: center;
+    }
+
+    .zoom-card {
+      width: 100%;
+      border: 1px solid rgba(45,140,255,.2);
+      border-radius: 14px;
+      padding: 28px 32px;
+      background: rgba(45,140,255,.04);
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .zoom-top-row {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+      flex-wrap: wrap;
+    }
+
+    .zoom-card-info {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .zoom-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--white);
+    }
+
+    .zoom-card-date {
+      font-size: .8rem;
+      font-weight: 600;
+      color: rgba(45,140,255,.85);
+      letter-spacing: .3px;
+    }
+
+    .zoom-local-time {
+      font-size: .82rem;
+      font-weight: 600;
+      color: rgba(45,140,255,.75);
+    }
+
+    .zoom-card-msg {
+      font-size: .78rem;
+      font-weight: 300;
+      color: rgba(255,255,255,.35);
+      line-height: 1.6;
+    }
+
+    /* Botón Zoom activo */
+    .btn-zoom {
+      background: #2D8CFF;
+      color: #fff;
+      white-space: nowrap;
+      flex-shrink: 0;
+      align-self: flex-start;
+    }
+    .btn-zoom:hover { opacity: .85; }
+
+    /* Botón Zoom inactivo */
+    .btn-zoom--disabled {
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.25);
+      cursor: not-allowed;
+      pointer-events: none;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .btn-zoom--disabled:hover { opacity: 1; transform: none; }
+
+    /* ── Toggle "Ver horarios" ── */
+    .zoom-times-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: rgba(255,255,255,.3);
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .71rem;
+      font-weight: 700;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 0;
+      transition: color .2s;
+      align-self: flex-start;
+    }
+    .zoom-times-toggle:hover { color: rgba(255,255,255,.6); }
+    .zoom-times-toggle .chevron { transition: transform .25s; }
+    .zoom-times-toggle[aria-expanded="true"] .chevron { transform: rotate(180deg); }
+
+    /* ── Panel de horarios ── */
+    .zoom-times-panel {
+      border-top: 1px solid rgba(255,255,255,.06);
+      padding-top: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .zoom-times-panel[hidden] { display: none; }
+
+    .tz-group {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .tz-group-left {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+      min-width: 58px;
+      flex-shrink: 0;
+    }
+
+    .tz-group-offset {
+      font-size: .58rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: rgba(255,255,255,.2);
+      text-transform: uppercase;
+    }
+
+    .tz-group-time {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: rgba(255,255,255,.65);
+      letter-spacing: -.5px;
+    }
+
+    .tz-group-sep {
+      width: 1px;
+      height: 36px;
+      background: rgba(255,255,255,.08);
+      flex-shrink: 0;
+    }
+
+    .tz-group-countries {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 14px;
+      flex: 1;
+    }
+
+    .tz-country {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: .78rem;
+      font-weight: 400;
+      color: rgba(255,255,255,.4);
+    }
+
+    .tz-country.is-user {
+      color: #2D8CFF;
+      font-weight: 700;
+    }
+
+    .tz-country .flag { line-height: 1; }
+
     /* ── Responsive ── */
     @media (max-width: 560px) {
       .cards { grid-template-columns: 1fr; }
       .card  { padding: 30px 24px; }
       main   { padding: 56px 20px 64px; }
       .logo  { width: 120px; }
+      .zoom-card { padding: 22px 20px; }
+      .zoom-top-row { flex-direction: column; }
+      .tz-group-left { min-width: 44px; }
     }
   </style>
 </head>
@@ -208,6 +403,51 @@
   <h1>Proyecto M18</h1>
   <p class="lead">Un curso para proteger, acompañar y restaurar la niñez desde los valores del Reino. Seleccioná tu idioma para comenzar.</p>
   <div class="rule"></div>
+
+  <!-- ── Capacitación Zoom · 30 de marzo ── -->
+  <div class="zoom-section">
+    <p class="zoom-eyebrow">Capacitación en vivo</p>
+    <div class="zoom-card">
+      <!-- Fila superior: info + botón -->
+      <div class="zoom-top-row">
+        <div class="zoom-card-info">
+          <p class="zoom-card-title">Sesión de capacitación · 30 de marzo</p>
+          <p class="zoom-card-date">📅 Lunes 30 de marzo de 2026</p>
+          <p class="zoom-local-time" id="zoomLocalTime">calculando tu horario…</p>
+        </div>
+        <a id="zoomBtn"
+           class="btn btn-zoom btn-zoom--disabled"
+           href="#"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-disabled="true"
+           tabindex="-1">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="32" height="32" rx="6" fill="currentColor" fill-opacity="0.15"/>
+            <path d="M5 11.5C5 10.119 6.119 9 7.5 9H18.5C19.881 9 21 10.119 21 11.5V20.5C21 21.881 19.881 23 18.5 23H7.5C6.119 23 5 21.881 5 20.5V11.5Z" fill="currentColor"/>
+            <path d="M21 14.5L27 11V21L21 17.5V14.5Z" fill="currentColor"/>
+          </svg>
+          Unirse por Zoom
+        </a>
+      </div>
+      <!-- Mensaje de estado -->
+      <p class="zoom-card-msg" id="zoomMsg">El enlace se activará minutos antes de comenzar la sesión.</p>
+      <!-- Toggle horarios -->
+      <button class="zoom-times-toggle" id="zoomTimesToggle"
+              aria-expanded="false" aria-controls="zoomTimesPanel">
+        <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 9l6 6 6-6"/>
+        </svg>
+        Ver horarios por país
+      </button>
+      <!-- Panel de horarios (generado por JS) -->
+      <div class="zoom-times-panel" id="zoomTimesPanel" hidden></div>
+    </div>
+  </div>
+
+  <div class="zoom-rule" style="margin-bottom:48px;"></div>
 
   <div class="cards">
 
@@ -262,11 +502,159 @@
     </div>
 
   </div>
+
 </main>
 
 <footer>
   Proyecto M18 &nbsp;·&nbsp; ACADI &nbsp;·&nbsp; acadi.net
 </footer>
 
+<script>
+  // ── Config ────────────────────────────────────────────────────────────────
+  const ZOOM_URL     = "https://zoom.us/j/XXXXXXXXXX"; // ← reemplazar con link real
+  // 20:00 Chile (CLST = UTC-3) → 23:00 UTC
+  const TRAINING_UTC = new Date("2026-03-30T23:00:00Z");
+  const OPEN_MIN     = 30;  // minutos antes que se activa el botón
+  const CLOSE_H      = 4;   // horas después que se desactiva
+  // ─────────────────────────────────────────────────────────────────────────
+
+  // Todos los países de América del Sur con su timezone IANA
+  const COUNTRIES = [
+    { name: 'Colombia',   flag: '🇨🇴', tz: 'America/Bogota' },
+    { name: 'Ecuador',    flag: '🇪🇨', tz: 'America/Guayaquil' },
+    { name: 'Perú',       flag: '🇵🇪', tz: 'America/Lima' },
+    { name: 'Bolivia',    flag: '🇧🇴', tz: 'America/La_Paz' },
+    { name: 'Venezuela',  flag: '🇻🇪', tz: 'America/Caracas' },
+    { name: 'Guyana',     flag: '🇬🇾', tz: 'America/Guyana' },
+    { name: 'Paraguay',   flag: '🇵🇾', tz: 'America/Asuncion' },
+    { name: 'Chile',      flag: '🇨🇱', tz: 'America/Santiago' },
+    { name: 'Argentina',  flag: '🇦🇷', tz: 'America/Argentina/Buenos_Aires' },
+    { name: 'Uruguay',    flag: '🇺🇾', tz: 'America/Montevideo' },
+    { name: 'Brasil',     flag: '🇧🇷', tz: 'America/Sao_Paulo' },
+    { name: 'Surinam',    flag: '🇸🇷', tz: 'America/Paramaribo' },
+  ];
+
+  function fmtTime(tz) {
+    return new Intl.DateTimeFormat('es', {
+      timeZone: tz, hour: '2-digit', minute: '2-digit', hour12: false
+    }).format(TRAINING_UTC);
+  }
+
+  function fmtOffset(tz) {
+    const parts = new Intl.DateTimeFormat('en', {
+      timeZone: tz, timeZoneName: 'shortOffset'
+    }).formatToParts(TRAINING_UTC);
+    return (parts.find(p => p.type === 'timeZoneName')?.value || '').replace('GMT', 'UTC');
+  }
+
+  // ── Detectar timezone del usuario ────────────────────────────────────────
+  const userTZ = (() => {
+    try { return Intl.DateTimeFormat().resolvedOptions().timeZone; } catch { return null; }
+  })();
+
+  // Mostrar horario local del usuario
+  (function setLocalTime() {
+    const el = document.getElementById('zoomLocalTime');
+    if (!el) return;
+    const tz = userTZ || 'America/Santiago';
+    try {
+      const time   = fmtTime(tz);
+      const offset = fmtOffset(tz);
+      const zone   = tz.split('/').pop().replace(/_/g, ' ');
+      el.textContent = `🕐 Tu horario: ${time} hrs · ${zone} (${offset})`;
+    } catch {
+      el.textContent = '🕐 20:00 hrs · Chile (UTC-3)';
+    }
+  })();
+
+  // ── Construir panel de horarios por país ─────────────────────────────────
+  (function buildTimesPanel() {
+    const panel = document.getElementById('zoomTimesPanel');
+    if (!panel) return;
+
+    // Agrupar países por offset UTC
+    const groups = new Map();
+    for (const c of COUNTRIES) {
+      try {
+        const offset = fmtOffset(c.tz);
+        const time   = fmtTime(c.tz);
+        if (!groups.has(offset)) groups.set(offset, { time, countries: [] });
+        groups.get(offset).countries.push(c);
+      } catch { /* timezone no soportada */ }
+    }
+
+    // Ordenar de UTC-5 a UTC-3
+    const sorted = [...groups.entries()].sort((a, b) => {
+      const n = s => parseFloat(s.replace('UTC', '') || '0');
+      return n(a[0]) - n(b[0]);
+    });
+
+    for (const [offset, { time, countries }] of sorted) {
+      const group = document.createElement('div');
+      group.className = 'tz-group';
+
+      // Columna izquierda: offset + hora
+      const left = document.createElement('div');
+      left.className = 'tz-group-left';
+      left.innerHTML =
+        `<span class="tz-group-offset">${offset}</span>` +
+        `<span class="tz-group-time">${time}</span>`;
+
+      // Separador vertical
+      const sep = document.createElement('div');
+      sep.className = 'tz-group-sep';
+
+      // Lista de países
+      const wrap = document.createElement('div');
+      wrap.className = 'tz-group-countries';
+
+      for (const c of countries) {
+        // Detectar si el usuario es de ese país (por timezone)
+        const isUser = userTZ && userTZ === c.tz;
+        const span = document.createElement('span');
+        span.className = 'tz-country' + (isUser ? ' is-user' : '');
+        span.innerHTML = `<span class="flag">${c.flag}</span>${c.name}`;
+        wrap.appendChild(span);
+      }
+
+      group.appendChild(left);
+      group.appendChild(sep);
+      group.appendChild(wrap);
+      panel.appendChild(group);
+    }
+  })();
+
+  // ── Toggle del panel ─────────────────────────────────────────────────────
+  document.getElementById('zoomTimesToggle')?.addEventListener('click', function () {
+    const panel  = document.getElementById('zoomTimesPanel');
+    const isOpen = this.getAttribute('aria-expanded') === 'true';
+    this.setAttribute('aria-expanded', String(!isOpen));
+    panel.hidden = isOpen;
+  });
+
+  // ── Activación automática del botón ──────────────────────────────────────
+  function checkZoomActivation() {
+    const now        = new Date();
+    const activateAt = new Date(TRAINING_UTC.getTime() - OPEN_MIN * 60 * 1000);
+    const endAt      = new Date(TRAINING_UTC.getTime() + CLOSE_H * 3600 * 1000);
+
+    const btn = document.getElementById('zoomBtn');
+    const msg = document.getElementById('zoomMsg');
+
+    if (now >= activateAt && now <= endAt) {
+      btn.href = ZOOM_URL;
+      btn.removeAttribute('aria-disabled');
+      btn.removeAttribute('tabindex');
+      btn.classList.remove('btn-zoom--disabled');
+      msg.textContent = '¡El enlace está activo! Hacé clic para unirte.';
+      msg.style.color = 'rgba(45,140,255,.9)';
+    } else if (now > endAt) {
+      msg.textContent = 'La sesión ya ha finalizado. ¡Gracias por participar!';
+    }
+  }
+
+  checkZoomActivation();
+  setInterval(checkZoomActivation, 60 * 1000);
+</script>
 </body>
 </html>
