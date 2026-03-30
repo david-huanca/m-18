@@ -474,7 +474,105 @@
 
     .tz-country .flag { line-height: 1; }
 
-    /* ── Responsive ── */
+    /* ── Widget flotante Capacitación en vivo ── */
+    .live-widget {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 1000;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 10px;
+    }
+
+    .live-widget-panel {
+      width: 360px;
+      border: 1px solid rgba(45,140,255,.25);
+      border-radius: 16px;
+      background: #1a2a3a;
+      box-shadow: 0 12px 48px rgba(0,0,0,.55), 0 0 0 1px rgba(45,140,255,.1);
+      overflow: hidden;
+      transform-origin: bottom right;
+      transition: opacity .25s ease, transform .25s ease;
+    }
+    .live-widget-panel[hidden] {
+      display: none;
+    }
+
+    .live-widget-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 18px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      background: rgba(45,140,255,.06);
+    }
+
+    .live-widget-label {
+      font-size: .62rem;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+    }
+
+    .live-widget-close {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: rgba(255,255,255,.25);
+      display: flex;
+      align-items: center;
+      padding: 2px;
+      transition: color .2s;
+    }
+    .live-widget-close:hover { color: rgba(255,255,255,.6); }
+
+    .live-widget-body {
+      padding: 18px 20px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    /* Botón disparador */
+    .live-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 18px;
+      border-radius: 50px;
+      background: #2D8CFF;
+      color: #fff;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: .3px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(45,140,255,.4);
+      transition: opacity .2s, transform .2s, box-shadow .2s;
+    }
+    .live-trigger:hover {
+      opacity: .9;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 28px rgba(45,140,255,.5);
+    }
+    .live-trigger-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #fff;
+      animation: pulse-dot 1.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes pulse-dot {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: .4; transform: scale(.7); }
+    }
+
+    /* Responsive ── */
     @media (max-width: 560px) {
       .cards { grid-template-columns: 1fr; }
       .card  { padding: 30px 24px; }
@@ -483,6 +581,8 @@
       .zoom-card { padding: 22px 20px; }
       .zoom-top-row { flex-direction: column; }
       .tz-group-left { min-width: 44px; }
+      .live-widget { bottom: 16px; right: 16px; }
+      .live-widget-panel { width: calc(100vw - 32px); }
     }
   </style>
 </head>
@@ -496,84 +596,6 @@
   <h1>Proyecto M18</h1>
   <p class="lead">Un curso para proteger, acompañar y restaurar la niñez desde los valores del Reino. Seleccioná tu idioma para comenzar.</p>
   <div class="rule"></div>
-
-  <!-- ── Capacitación Zoom · 30 de marzo ── -->
-  <div class="zoom-section">
-    <p class="zoom-eyebrow">Capacitación en vivo</p>
-    <div class="zoom-card">
-      <!-- Fila superior: info + botón -->
-      <div class="zoom-top-row">
-        <div class="zoom-card-info">
-          <p class="zoom-card-title">Sesión de capacitación · 30 de marzo</p>
-          <p class="zoom-card-date">📅 Lunes 30 de marzo de 2026</p>
-          <p class="zoom-local-time" id="zoomLocalTime">calculando tu horario…</p>
-        </div>
-        <a id="zoomBtn"
-           class="btn btn-zoom btn-zoom--disabled"
-           href="#"
-           target="_blank"
-           rel="noopener noreferrer"
-           aria-disabled="true"
-           tabindex="-1">
-          <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <rect width="32" height="32" rx="6" fill="currentColor" fill-opacity="0.15"/>
-            <path d="M5 11.5C5 10.119 6.119 9 7.5 9H18.5C19.881 9 21 10.119 21 11.5V20.5C21 21.881 19.881 23 18.5 23H7.5C6.119 23 5 21.881 5 20.5V11.5Z" fill="currentColor"/>
-            <path d="M21 14.5L27 11V21L21 17.5V14.5Z" fill="currentColor"/>
-          </svg>
-          Unirse por Zoom
-        </a>
-      </div>
-      <!-- Countdown -->
-      <div class="zoom-countdown" id="zoomCountdown" aria-live="polite">
-        <div class="cd-unit">
-          <span class="cd-num" id="cdDays">--</span>
-          <span class="cd-label">días</span>
-        </div>
-        <span class="cd-sep">:</span>
-        <div class="cd-unit">
-          <span class="cd-num" id="cdHours">--</span>
-          <span class="cd-label">horas</span>
-        </div>
-        <span class="cd-sep">:</span>
-        <div class="cd-unit">
-          <span class="cd-num" id="cdMins">--</span>
-          <span class="cd-label">min</span>
-        </div>
-        <span class="cd-sep">:</span>
-        <div class="cd-unit">
-          <span class="cd-num" id="cdSecs">--</span>
-          <span class="cd-label">seg</span>
-        </div>
-      </div>
-      <!-- Mensaje de estado -->
-      <p class="zoom-card-msg" id="zoomMsg">El enlace se activará minutos antes de comenzar la sesión.</p>
-      <!-- Fila inferior: toggle + botón WhatsApp -->
-      <div class="zoom-bottom-row">
-        <button class="zoom-times-toggle" id="zoomTimesToggle"
-                aria-expanded="false" aria-controls="zoomTimesPanel">
-          <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none"
-               stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
-               stroke-linejoin="round" aria-hidden="true">
-            <path d="M6 9l6 6 6-6"/>
-          </svg>
-          Ver horarios por país
-        </button>
-        <a class="btn btn-wa"
-           href="https://chat.whatsapp.com/E8AiWtcX1HWDq4nkdP83Nc?mode=gi_t"
-           target="_blank" rel="noopener noreferrer">
-          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"
-               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-            <path d="M16 2C8.268 2 2 8.268 2 16c0 2.484.668 4.81 1.832 6.808L2 30l7.392-1.808A13.913 13.913 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.545 11.545 0 0 1-5.888-1.608l-.424-.252-4.388 1.072 1.104-4.264-.276-.44A11.557 11.557 0 0 1 4.4 16C4.4 9.59 9.59 4.4 16 4.4S27.6 9.59 27.6 16 22.41 27.6 16 27.6zm6.34-8.672c-.348-.176-2.06-1.016-2.38-1.132-.32-.116-.552-.176-.784.176-.232.348-.9 1.132-1.1 1.364-.204.232-.404.26-.752.084-.348-.176-1.468-.54-2.796-1.724-1.032-.92-1.728-2.056-1.932-2.404-.204-.348-.02-.536.152-.708.156-.156.348-.408.524-.612.172-.204.228-.348.344-.58.116-.232.056-.436-.028-.612-.084-.176-.784-1.888-1.072-2.584-.284-.676-.572-.584-.784-.596l-.668-.012c-.232 0-.608.088-.928.436s-1.22 1.192-1.22 2.908 1.248 3.372 1.42 3.604c.176.232 2.456 3.748 5.952 5.256.832.36 1.48.576 1.988.736.836.264 1.596.228 2.196.14.672-.1 2.06-.84 2.352-1.652.292-.812.292-1.508.204-1.652-.084-.144-.316-.228-.664-.404z"/>
-          </svg>
-         Unirse Grupo WhatsApp
-        </a>
-      </div>
-      <!-- Panel de horarios (generado por JS) -->
-      <div class="zoom-times-panel" id="zoomTimesPanel" hidden></div>
-    </div>
-  </div>
-
-  <div class="zoom-rule" style="margin-bottom:48px;"></div>
 
   <!-- Encabezado sección cursos -->
   <div class="courses-header">
@@ -641,6 +663,102 @@
 <footer>
   Proyecto M18 &nbsp;·&nbsp; ACADI &nbsp;·&nbsp; acadi.net
 </footer>
+
+<!-- ── Widget flotante · Capacitación en vivo ── -->
+<div class="live-widget" id="liveWidget">
+
+  <!-- Panel expandible -->
+  <div class="live-widget-panel" id="livePanel">
+    <div class="live-widget-header">
+      <span class="live-widget-label">Capacitación en vivo</span>
+      <button class="live-widget-close" id="livePanelClose" aria-label="Cerrar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+             stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+             stroke-linejoin="round" aria-hidden="true">
+          <path d="M18 6L6 18M6 6l12 12"/>
+        </svg>
+      </button>
+    </div>
+    <div class="live-widget-body">
+      <!-- Fila superior: info + botón Zoom -->
+      <div class="zoom-top-row">
+        <div class="zoom-card-info">
+          <p class="zoom-card-title">Sesión de capacitación · 30 de marzo</p>
+          <p class="zoom-card-date">📅 Lunes 30 de marzo de 2026</p>
+          <p class="zoom-local-time" id="zoomLocalTime">calculando tu horario…</p>
+        </div>
+        <a id="zoomBtn"
+           class="btn btn-zoom btn-zoom--disabled"
+           href="https://zoom.us/j/94929375974?pwd=rmrkxZRzY0m4x3wFDUkib2AXyCPj6r.1"
+           target="_blank"
+           rel="noopener noreferrer"
+           aria-disabled="true"
+           tabindex="-1">
+          <svg width="18" height="18" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <rect width="32" height="32" rx="6" fill="currentColor" fill-opacity="0.15"/>
+            <path d="M5 11.5C5 10.119 6.119 9 7.5 9H18.5C19.881 9 21 10.119 21 11.5V20.5C21 21.881 19.881 23 18.5 23H7.5C6.119 23 5 21.881 5 20.5V11.5Z" fill="currentColor"/>
+            <path d="M21 14.5L27 11V21L21 17.5V14.5Z" fill="currentColor"/>
+          </svg>
+          Unirse por Zoom
+        </a>
+      </div>
+      <!-- Countdown -->
+      <div class="zoom-countdown" id="zoomCountdown" aria-live="polite">
+        <div class="cd-unit">
+          <span class="cd-num" id="cdDays">--</span>
+          <span class="cd-label">días</span>
+        </div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit">
+          <span class="cd-num" id="cdHours">--</span>
+          <span class="cd-label">horas</span>
+        </div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit">
+          <span class="cd-num" id="cdMins">--</span>
+          <span class="cd-label">min</span>
+        </div>
+        <span class="cd-sep">:</span>
+        <div class="cd-unit">
+          <span class="cd-num" id="cdSecs">--</span>
+          <span class="cd-label">seg</span>
+        </div>
+      </div>
+      <!-- Mensaje de estado -->
+      <p class="zoom-card-msg" id="zoomMsg">El enlace se activará minutos antes de comenzar la sesión.</p>
+      <!-- Fila inferior: toggle + botón WhatsApp -->
+      <div class="zoom-bottom-row">
+        <button class="zoom-times-toggle" id="zoomTimesToggle"
+                aria-expanded="false" aria-controls="zoomTimesPanel">
+          <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none"
+               stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+               stroke-linejoin="round" aria-hidden="true">
+            <path d="M6 9l6 6 6-6"/>
+          </svg>
+          Ver horarios por país
+        </button>
+        <a class="btn btn-wa"
+           href="https://chat.whatsapp.com/E8AiWtcX1HWDq4nkdP83Nc?mode=gi_t"
+           target="_blank" rel="noopener noreferrer">
+          <svg width="16" height="16" viewBox="0 0 32 32" fill="currentColor"
+               xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M16 2C8.268 2 2 8.268 2 16c0 2.484.668 4.81 1.832 6.808L2 30l7.392-1.808A13.913 13.913 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.545 11.545 0 0 1-5.888-1.608l-.424-.252-4.388 1.072 1.104-4.264-.276-.44A11.557 11.557 0 0 1 4.4 16C4.4 9.59 9.59 4.4 16 4.4S27.6 9.59 27.6 16 22.41 27.6 16 27.6zm6.34-8.672c-.348-.176-2.06-1.016-2.38-1.132-.32-.116-.552-.176-.784.176-.232.348-.9 1.132-1.1 1.364-.204.232-.404.26-.752.084-.348-.176-1.468-.54-2.796-1.724-1.032-.92-1.728-2.056-1.932-2.404-.204-.348-.02-.536.152-.708.156-.156.348-.408.524-.612.172-.204.228-.348.344-.58.116-.232.056-.436-.028-.612-.084-.176-.784-1.888-1.072-2.584-.284-.676-.572-.584-.784-.596l-.668-.012c-.232 0-.608.088-.928.436s-1.22 1.192-1.22 2.908 1.248 3.372 1.42 3.604c.176.232 2.456 3.748 5.952 5.256.832.36 1.48.576 1.988.736.836.264 1.596.228 2.196.14.672-.1 2.06-.84 2.352-1.652.292-.812.292-1.508.204-1.652-.084-.144-.316-.228-.664-.404z"/>
+          </svg>
+          Unirse Grupo WhatsApp
+        </a>
+      </div>
+      <!-- Panel de horarios (generado por JS) -->
+      <div class="zoom-times-panel" id="zoomTimesPanel" hidden></div>
+    </div>
+  </div>
+
+  <!-- Botón disparador -->
+  <button class="live-trigger" id="liveTrigger" aria-expanded="true" aria-controls="livePanel">
+    <span class="live-trigger-dot"></span>
+    Capacitación en vivo
+  </button>
+
+</div>
 
 <script>
   // ── Config ────────────────────────────────────────────────────────────────
@@ -810,6 +928,20 @@
 
   tick();
   setInterval(tick, 1000);
+
+  // ── Widget flotante: abrir / cerrar ──────────────────────────────────────
+  const liveTrigger    = document.getElementById('liveTrigger');
+  const livePanel      = document.getElementById('livePanel');
+  const livePanelClose = document.getElementById('livePanelClose');
+
+  function togglePanel(open) {
+    livePanel.hidden = !open;
+    liveTrigger.setAttribute('aria-expanded', String(open));
+    liveTrigger.style.display = open ? 'none' : '';
+  }
+
+  liveTrigger.addEventListener('click', () => togglePanel(true));
+  livePanelClose.addEventListener('click', () => togglePanel(false));
 </script>
 </body>
 </html>
