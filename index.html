@@ -572,6 +572,43 @@
       50% { opacity: .4; transform: scale(.7); }
     }
 
+    /* ── Language switch ── */
+    .lang-switch {
+      position: fixed;
+      top: 20px;
+      right: 24px;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 50px;
+      padding: 3px;
+      gap: 2px;
+    }
+    .lang-btn {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      padding: 6px 13px;
+      border-radius: 50px;
+      border: none;
+      background: none;
+      color: rgba(255,255,255,.35);
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .lang-btn.active {
+      background: var(--gold);
+      color: var(--dark);
+    }
+    .lang-btn[data-lang="pt"].active {
+      background: var(--pink);
+      color: var(--white);
+    }
+
     /* Responsive ── */
     @media (max-width: 560px) {
       .cards { grid-template-columns: 1fr; }
@@ -592,16 +629,16 @@
 
   <img src="logo-m18.png" alt="Proyecto M18" class="logo" />
 
-  <p class="eyebrow">Formación · Protección · Restauración</p>
+  <p class="eyebrow" data-i18n="eyebrow">Formación · Protección · Restauración</p>
   <h1>Proyecto M18</h1>
-  <p class="lead">Un curso para proteger, acompañar y restaurar la niñez desde los valores del Reino. Seleccioná tu idioma para comenzar.</p>
+  <p class="lead" data-i18n="lead">Un curso para proteger, acompañar y restaurar la niñez desde los valores del Reino. Seleccioná tu idioma para comenzar.</p>
   <div class="rule"></div>
 
   <!-- Encabezado sección cursos -->
   <div class="courses-header">
-    <p class="courses-eyebrow">Acceso gratuito en ACADI</p>
-    <h2 class="courses-title">Accedé al curso completo</h2>
-    <p class="courses-desc">9 lecciones on demand · material descargable · recursos complementarios</p>
+    <p class="courses-eyebrow" data-i18n="courses-eyebrow">Acceso gratuito en ACADI</p>
+    <h2 class="courses-title" data-i18n="courses-title">Accedé al curso completo</h2>
+    <p class="courses-desc" data-i18n="courses-desc">9 lecciones on demand · material descargable · recursos complementarios</p>
   </div>
 
   <div class="cards">
@@ -616,14 +653,14 @@
           <path d="M6.5 12 Q18 15.5 29.5 12" stroke="#E7B867" stroke-width="1.3" fill="none"/>
           <path d="M6.5 24 Q18 20.5 29.5 24" stroke="#E7B867" stroke-width="1.3" fill="none"/>
         </svg>
-        <span class="card-lang">Español</span>
+        <span class="card-lang" data-i18n="card-es-lang">Español</span>
       </div>
-      <h2>Accedé al curso<br>en Español</h2>
-      <p class="card-desc">Materiales completos, formación práctica y comunidad de aprendizaje en tu idioma.</p>
+      <h2 data-i18n="card-es-h2">Accedé al curso<br>en Español</h2>
+      <p class="card-desc" data-i18n="card-es-desc">Materiales completos, formación práctica y comunidad de aprendizaje en tu idioma.</p>
       <a class="btn btn-es"
          href="https://www.acadi.net/products/courses/proyecto-m-18"
          target="_blank" rel="noopener noreferrer">
-        Ir al curso
+        <span data-i18n="card-es-btn">Ir al curso</span>
         <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -641,14 +678,14 @@
           <path d="M6.5 12 Q18 15.5 29.5 12" stroke="#DC3069" stroke-width="1.3" fill="none"/>
           <path d="M6.5 24 Q18 20.5 29.5 24" stroke="#DC3069" stroke-width="1.3" fill="none"/>
         </svg>
-        <span class="card-lang">Português</span>
+        <span class="card-lang" data-i18n="card-pt-lang">Português</span>
       </div>
-      <h2>Acesse o curso<br>em Português</h2>
-      <p class="card-desc">Materiais completos, formação prática e comunidade de aprendizado no seu idioma.</p>
+      <h2 data-i18n="card-pt-h2">Acesse o curso<br>em Português</h2>
+      <p class="card-desc" data-i18n="card-pt-desc">Materiais completos, formação prática e comunidade de aprendizado no seu idioma.</p>
       <a class="btn btn-pt"
          href="https://pt.acadi.net/products/courses/M-18"
          target="_blank" rel="noopener noreferrer">
-        Ir ao curso
+        <span data-i18n="card-pt-btn">Ir ao curso</span>
         <svg class="btn-arrow" width="14" height="14" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
           <path d="M5 12h14M12 5l7 7-7 7"/>
@@ -661,8 +698,14 @@
 </main>
 
 <footer>
-  Proyecto M18 &nbsp;·&nbsp; ACADI &nbsp;·&nbsp; acadi.net
+  <span data-i18n="footer">Proyecto M18</span> &nbsp;·&nbsp; ACADI &nbsp;·&nbsp; acadi.net
 </footer>
+
+<!-- ── Language switch ── -->
+<div class="lang-switch" role="group" aria-label="Idioma / Idioma">
+  <button class="lang-btn active" data-lang="es">ES</button>
+  <button class="lang-btn" data-lang="pt">PT</button>
+</div>
 
 <!-- ── Widget flotante · Capacitación en vivo ── -->
 <div class="live-widget" id="liveWidget">
@@ -670,8 +713,8 @@
   <!-- Panel expandible -->
   <div class="live-widget-panel" id="livePanel">
     <div class="live-widget-header">
-      <span class="live-widget-label">Capacitación en vivo</span>
-      <button class="live-widget-close" id="livePanelClose" aria-label="Cerrar">
+      <span class="live-widget-label" data-i18n="widget-label">Capacitación en vivo</span>
+      <button class="live-widget-close" id="livePanelClose" data-i18n-aria-label="widget-close" aria-label="Cerrar">
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
              stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
              stroke-linejoin="round" aria-hidden="true">
@@ -683,8 +726,8 @@
       <!-- Fila superior: info + botón Zoom -->
       <div class="zoom-top-row">
         <div class="zoom-card-info">
-          <p class="zoom-card-title">Sesión de capacitación · 30 de marzo</p>
-          <p class="zoom-card-date">📅 Lunes 30 de marzo de 2026</p>
+          <p class="zoom-card-title" data-i18n="zoom-title">Sesión de capacitación · 30 de marzo</p>
+          <p class="zoom-card-date" data-i18n="zoom-date">📅 Lunes 30 de marzo de 2026</p>
           <p class="zoom-local-time" id="zoomLocalTime">calculando tu horario…</p>
         </div>
         <a id="zoomBtn"
@@ -699,33 +742,33 @@
             <path d="M5 11.5C5 10.119 6.119 9 7.5 9H18.5C19.881 9 21 10.119 21 11.5V20.5C21 21.881 19.881 23 18.5 23H7.5C6.119 23 5 21.881 5 20.5V11.5Z" fill="currentColor"/>
             <path d="M21 14.5L27 11V21L21 17.5V14.5Z" fill="currentColor"/>
           </svg>
-          Unirse por Zoom
+          <span data-i18n="zoom-join">Unirse por Zoom</span>
         </a>
       </div>
       <!-- Countdown -->
       <div class="zoom-countdown" id="zoomCountdown" aria-live="polite">
         <div class="cd-unit">
           <span class="cd-num" id="cdDays">--</span>
-          <span class="cd-label">días</span>
+          <span class="cd-label" data-i18n="cd-days">días</span>
         </div>
         <span class="cd-sep">:</span>
         <div class="cd-unit">
           <span class="cd-num" id="cdHours">--</span>
-          <span class="cd-label">horas</span>
+          <span class="cd-label" data-i18n="cd-hours">horas</span>
         </div>
         <span class="cd-sep">:</span>
         <div class="cd-unit">
           <span class="cd-num" id="cdMins">--</span>
-          <span class="cd-label">min</span>
+          <span class="cd-label" data-i18n="cd-mins">min</span>
         </div>
         <span class="cd-sep">:</span>
         <div class="cd-unit">
           <span class="cd-num" id="cdSecs">--</span>
-          <span class="cd-label">seg</span>
+          <span class="cd-label" data-i18n="cd-secs">seg</span>
         </div>
       </div>
       <!-- Mensaje de estado -->
-      <p class="zoom-card-msg" id="zoomMsg">El enlace se activará minutos antes de comenzar la sesión.</p>
+      <p class="zoom-card-msg" id="zoomMsg" data-i18n="zoom-msg">El enlace se activará minutos antes de comenzar la sesión.</p>
       <!-- Fila inferior: toggle + botón WhatsApp -->
       <div class="zoom-bottom-row">
         <button class="zoom-times-toggle" id="zoomTimesToggle"
@@ -735,7 +778,7 @@
                stroke-linejoin="round" aria-hidden="true">
             <path d="M6 9l6 6 6-6"/>
           </svg>
-          Ver horarios por país
+          <span data-i18n="zoom-times-toggle">Ver horarios por país</span>
         </button>
         <a class="btn btn-wa"
            href="https://chat.whatsapp.com/E8AiWtcX1HWDq4nkdP83Nc?mode=gi_t"
@@ -744,7 +787,7 @@
                xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
             <path d="M16 2C8.268 2 2 8.268 2 16c0 2.484.668 4.81 1.832 6.808L2 30l7.392-1.808A13.913 13.913 0 0 0 16 30c7.732 0 14-6.268 14-14S23.732 2 16 2zm0 25.6a11.545 11.545 0 0 1-5.888-1.608l-.424-.252-4.388 1.072 1.104-4.264-.276-.44A11.557 11.557 0 0 1 4.4 16C4.4 9.59 9.59 4.4 16 4.4S27.6 9.59 27.6 16 22.41 27.6 16 27.6zm6.34-8.672c-.348-.176-2.06-1.016-2.38-1.132-.32-.116-.552-.176-.784.176-.232.348-.9 1.132-1.1 1.364-.204.232-.404.26-.752.084-.348-.176-1.468-.54-2.796-1.724-1.032-.92-1.728-2.056-1.932-2.404-.204-.348-.02-.536.152-.708.156-.156.348-.408.524-.612.172-.204.228-.348.344-.58.116-.232.056-.436-.028-.612-.084-.176-.784-1.888-1.072-2.584-.284-.676-.572-.584-.784-.596l-.668-.012c-.232 0-.608.088-.928.436s-1.22 1.192-1.22 2.908 1.248 3.372 1.42 3.604c.176.232 2.456 3.748 5.952 5.256.832.36 1.48.576 1.988.736.836.264 1.596.228 2.196.14.672-.1 2.06-.84 2.352-1.652.292-.812.292-1.508.204-1.652-.084-.144-.316-.228-.664-.404z"/>
           </svg>
-          Unirse Grupo WhatsApp
+          <span data-i18n="zoom-wa">Unirse Grupo WhatsApp</span>
         </a>
       </div>
       <!-- Panel de horarios (generado por JS) -->
@@ -755,21 +798,125 @@
   <!-- Botón disparador -->
   <button class="live-trigger" id="liveTrigger" aria-expanded="true" aria-controls="livePanel">
     <span class="live-trigger-dot"></span>
-    Capacitación en vivo
+    <span data-i18n="widget-trigger">Capacitación en vivo</span>
   </button>
 
 </div>
 
 <script>
   // ── Config ────────────────────────────────────────────────────────────────
-  const ZOOM_URL     = "https://zoom.us/j/XXXXXXXXXX"; // ← reemplazar con link real
-  // 20:00 Chile (CLST = UTC-3) → 23:00 UTC
+  const ZOOM_URL     = "https://zoom.us/j/94929375974?pwd=rmrkxZRzY0m4x3wFDUkib2AXyCPj6r.1";
   const TRAINING_UTC = new Date("2026-03-30T23:00:00Z");
-  const OPEN_MIN     = 10;  // minutos antes que se activa el botón
-  const CLOSE_H      = 4;   // horas después que se desactiva
-  // ─────────────────────────────────────────────────────────────────────────
+  const OPEN_MIN     = 30;
+  const CLOSE_H      = 4;
 
-  // Todos los países de América del Sur con su timezone IANA
+  // ── Traducciones ─────────────────────────────────────────────────────────
+  const T = {
+    es: {
+      'eyebrow':           'Formación · Protección · Restauración',
+      'lead':              'Un curso para proteger, acompañar y restaurar la niñez desde los valores del Reino. Seleccioná tu idioma para comenzar.',
+      'courses-eyebrow':   'Acceso gratuito en ACADI',
+      'courses-title':     'Accedé al curso completo',
+      'courses-desc':      '9 lecciones on demand · material descargable · recursos complementarios',
+      'card-es-lang':      'Español',
+      'card-es-h2':        'Accedé al curso<br>en Español',
+      'card-es-desc':      'Materiales completos, formación práctica y comunidad de aprendizaje en tu idioma.',
+      'card-es-btn':       'Ir al curso',
+      'card-pt-lang':      'Português',
+      'card-pt-h2':        'Acesse o curso<br>em Português',
+      'card-pt-desc':      'Materiais completos, formação prática e comunidade de aprendizado no seu idioma.',
+      'card-pt-btn':       'Ir ao curso',
+      'footer':            'Proyecto M18',
+      'widget-label':      'Capacitación en vivo',
+      'widget-trigger':    'Capacitación en vivo',
+      'widget-close':      'Cerrar',
+      'zoom-title':        'Sesión de capacitación · 30 de marzo',
+      'zoom-date':         '📅 Lunes 30 de marzo de 2026',
+      'zoom-join':         'Unirse por Zoom',
+      'zoom-msg':          'El enlace se activará minutos antes de comenzar la sesión.',
+      'zoom-msg-active':   '¡El enlace está activo! Hacé clic para unirte.',
+      'zoom-msg-ended':    'La sesión ya ha finalizado. ¡Gracias por participar!',
+      'zoom-times-toggle': 'Ver horarios por país',
+      'zoom-wa':           'Unirse Grupo WhatsApp',
+      'cd-days':           'días',
+      'cd-hours':          'horas',
+      'cd-mins':           'min',
+      'cd-secs':           'seg',
+      'local-time-prefix': '🕐 Tu horario:',
+      'local-time-fallback':'🕐 20:00 hrs · Chile (UTC-3)',
+    },
+    pt: {
+      'eyebrow':           'Formação · Proteção · Restauração',
+      'lead':              'Um curso para proteger, acompanhar e restaurar a infância desde os valores do Reino. Escolha o seu idioma para começar.',
+      'courses-eyebrow':   'Acesso gratuito na ACADI',
+      'courses-title':     'Acesse o curso completo',
+      'courses-desc':      '9 lições on demand · material para download · recursos complementares',
+      'card-es-lang':      'Español',
+      'card-es-h2':        'Acesse o curso<br>em Español',
+      'card-es-desc':      'Materiais completos, formação prática e comunidade de aprendizado no seu idioma.',
+      'card-es-btn':       'Ir ao curso',
+      'card-pt-lang':      'Português',
+      'card-pt-h2':        'Acesse o curso<br>em Português',
+      'card-pt-desc':      'Materiais completos, formação prática e comunidade de aprendizado no seu idioma.',
+      'card-pt-btn':       'Ir ao curso',
+      'footer':            'Projeto M18',
+      'widget-label':      'Capacitação ao vivo',
+      'widget-trigger':    'Capacitação ao vivo',
+      'widget-close':      'Fechar',
+      'zoom-title':        'Sessão de capacitação · 30 de março',
+      'zoom-date':         '📅 Segunda-feira, 30 de março de 2026',
+      'zoom-join':         'Entrar no Zoom',
+      'zoom-msg':          'O link será ativado minutos antes de começar a sessão.',
+      'zoom-msg-active':   'O link está ativo! Clique para entrar.',
+      'zoom-msg-ended':    'A sessão já terminou. Obrigado por participar!',
+      'zoom-times-toggle': 'Ver horários por país',
+      'zoom-wa':           'Entrar Grupo WhatsApp',
+      'cd-days':           'dias',
+      'cd-hours':          'horas',
+      'cd-mins':           'min',
+      'cd-secs':           'seg',
+      'local-time-prefix': '🕐 Seu horário:',
+      'local-time-fallback':'🕐 20:00 hrs · Chile (UTC-3)',
+    }
+  };
+
+  let currentLang = localStorage.getItem('m18-lang') || 'es';
+
+  function applyLang(lang) {
+    currentLang = lang;
+    localStorage.setItem('m18-lang', lang);
+    document.documentElement.lang = lang;
+
+    // Actualizar textos con data-i18n
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (T[lang][key] !== undefined) el.innerHTML = T[lang][key];
+    });
+
+    // Actualizar aria-labels
+    document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+      const key = el.getAttribute('data-i18n-aria-label');
+      if (T[lang][key] !== undefined) el.setAttribute('aria-label', T[lang][key]);
+    });
+
+    // Actualizar botones del switch
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+
+    // Re-calcular horario local (depende del idioma)
+    setLocalTime();
+
+    // Actualizar mensaje del zoom si ya está en estado finalizado o activo
+    const msg = document.getElementById('zoomMsg');
+    if (msg && msg.dataset.state === 'active') {
+      msg.textContent = T[lang]['zoom-msg-active'];
+    } else if (msg && msg.dataset.state === 'ended') {
+      msg.textContent = T[lang]['zoom-msg-ended'];
+    }
+  }
+
+  // ── Países ───────────────────────────────────────────────────────────────
   const COUNTRIES = [
     { name: 'Colombia',   flag: '🇨🇴', tz: 'America/Bogota' },
     { name: 'Ecuador',    flag: '🇪🇨', tz: 'America/Guayaquil' },
@@ -796,13 +943,11 @@
     return (parts.find(p => p.type === 'timeZoneName')?.value || '').replace('GMT', 'UTC');
   }
 
-  // ── Detectar timezone del usuario ────────────────────────────────────────
   const userTZ = (() => {
     try { return Intl.DateTimeFormat().resolvedOptions().timeZone; } catch { return null; }
   })();
 
-  // Mostrar horario local del usuario
-  (function setLocalTime() {
+  function setLocalTime() {
     const el = document.getElementById('zoomLocalTime');
     if (!el) return;
     const tz = userTZ || 'America/Santiago';
@@ -810,18 +955,17 @@
       const time   = fmtTime(tz);
       const offset = fmtOffset(tz);
       const zone   = tz.split('/').pop().replace(/_/g, ' ');
-      el.textContent = `🕐 Tu horario: ${time} hrs · ${zone} (${offset})`;
+      el.textContent = `${T[currentLang]['local-time-prefix']} ${time} hrs · ${zone} (${offset})`;
     } catch {
-      el.textContent = '🕐 20:00 hrs · Chile (UTC-3)';
+      el.textContent = T[currentLang]['local-time-fallback'];
     }
-  })();
+  }
 
-  // ── Construir panel de horarios por país ─────────────────────────────────
+  // ── Panel de horarios ─────────────────────────────────────────────────────
   (function buildTimesPanel() {
     const panel = document.getElementById('zoomTimesPanel');
     if (!panel) return;
 
-    // Agrupar países por offset UTC
     const groups = new Map();
     for (const c of COUNTRIES) {
       try {
@@ -832,7 +976,6 @@
       } catch { /* timezone no soportada */ }
     }
 
-    // Ordenar de UTC-5 a UTC-3
     const sorted = [...groups.entries()].sort((a, b) => {
       const n = s => parseFloat(s.replace('UTC', '') || '0');
       return n(a[0]) - n(b[0]);
@@ -842,23 +985,19 @@
       const group = document.createElement('div');
       group.className = 'tz-group';
 
-      // Columna izquierda: offset + hora
       const left = document.createElement('div');
       left.className = 'tz-group-left';
       left.innerHTML =
         `<span class="tz-group-offset">${offset}</span>` +
         `<span class="tz-group-time">${time}</span>`;
 
-      // Separador vertical
       const sep = document.createElement('div');
       sep.className = 'tz-group-sep';
 
-      // Lista de países
       const wrap = document.createElement('div');
       wrap.className = 'tz-group-countries';
 
       for (const c of countries) {
-        // Detectar si el usuario es de ese país (por timezone)
         const isUser = userTZ && userTZ === c.tz;
         const span = document.createElement('span');
         span.className = 'tz-country' + (isUser ? ' is-user' : '');
@@ -873,7 +1012,7 @@
     }
   })();
 
-  // ── Toggle del panel ─────────────────────────────────────────────────────
+  // ── Toggle panel horarios ─────────────────────────────────────────────────
   document.getElementById('zoomTimesToggle')?.addEventListener('click', function () {
     const panel  = document.getElementById('zoomTimesPanel');
     const isOpen = this.getAttribute('aria-expanded') === 'true';
@@ -900,7 +1039,6 @@
     const msg        = document.getElementById('zoomMsg');
     const diff       = TRAINING_UTC - now;
 
-    // ── Countdown activo ──
     if (diff > 0) {
       const totalSecs = Math.floor(diff / 1000);
       cdEl.days.textContent  = pad(Math.floor(totalSecs / 86400));
@@ -908,28 +1046,25 @@
       cdEl.mins.textContent  = pad(Math.floor((totalSecs % 3600) / 60));
       cdEl.secs.textContent  = pad(totalSecs % 60);
     } else {
-      // Ocultar countdown cuando arranca
       cdEl.wrap.classList.add('zoom-countdown--done');
     }
 
-    // ── Activar / desactivar botón ──
     if (now >= activateAt && now <= endAt) {
       btn.href = ZOOM_URL;
       btn.removeAttribute('aria-disabled');
       btn.removeAttribute('tabindex');
       btn.classList.remove('btn-zoom--disabled');
-      msg.textContent = '¡El enlace está activo! Hacé clic para unirte.';
-      msg.style.color = 'rgba(45,140,255,.9)';
+      msg.dataset.state = 'active';
+      msg.textContent   = T[currentLang]['zoom-msg-active'];
+      msg.style.color   = 'rgba(45,140,255,.9)';
     } else if (now > endAt) {
-      msg.textContent = 'La sesión ya ha finalizado. ¡Gracias por participar!';
-      msg.style.color = '';
+      msg.dataset.state = 'ended';
+      msg.textContent   = T[currentLang]['zoom-msg-ended'];
+      msg.style.color   = '';
     }
   }
 
-  tick();
-  setInterval(tick, 1000);
-
-  // ── Widget flotante: abrir / cerrar ──────────────────────────────────────
+  // ── Widget flotante ───────────────────────────────────────────────────────
   const liveTrigger    = document.getElementById('liveTrigger');
   const livePanel      = document.getElementById('livePanel');
   const livePanelClose = document.getElementById('livePanelClose');
@@ -942,6 +1077,16 @@
 
   liveTrigger.addEventListener('click', () => togglePanel(true));
   livePanelClose.addEventListener('click', () => togglePanel(false));
+
+  // ── Language switch ───────────────────────────────────────────────────────
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+  });
+
+  // ── Init ──────────────────────────────────────────────────────────────────
+  applyLang(currentLang);
+  tick();
+  setInterval(tick, 1000);
 </script>
 </body>
 </html>
